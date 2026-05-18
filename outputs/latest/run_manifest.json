@@ -76,5 +76,26 @@
       "5C_hyb_aka"
     ],
     "timestamp": "2026-05-17T23:41:30.137210"
+  },
+  "stage6": {
+    "best_exp": "6A_routed",
+    "best_wr": 0.3789111410658792,
+    "improved": true,
+    "dense_models": [
+      "minilm",
+      "e5s",
+      "e5b"
+    ],
+    "routing": {
+      "Aka_Gha": "stage6",
+      "Amh_Eth": "stage5_routed",
+      "Eng_Eth": "stage5_routed",
+      "Eng_Gha": "stage5_routed",
+      "Eng_Ken": "stage6",
+      "Eng_Uga": "stage5_routed",
+      "Lug_Uga": "stage5_routed",
+      "Swa_Ken": "stage6"
+    },
+    "timestamp": "2026-05-18T01:09:04.136217"
   }
 }

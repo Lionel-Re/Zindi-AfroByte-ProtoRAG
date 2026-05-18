@@ -1,8 +1,8 @@
 {
-  "best_experiment": "5A_LGB_rl_heavy+routing_Swa_Lug_S4",
-  "weighted_rouge_val": 0.37563,
-  "rouge1_val": 0.53457,
-  "rougel_val": 0.48063,
+  "best_experiment": "6A_routed",
+  "weighted_rouge_val": 0.3789111410658792,
+  "rouge1_val": 0.5391153379108091,
+  "rougel_val": 0.4849688271321076,
   "stage_results": {
     "stage1_sparse": {
       "experiment": "E5_moe_by_subset",
@@ -33,6 +33,42 @@
       "r1": 0.53457,
       "rl": 0.48063,
       "routing": "Stage4 for Swa_Ken+Lug_Uga, Stage5 5A_LGB_rl_heavy for others"
+    },
+    "stage6": {
+      "experiment": "6A_routed",
+      "wr": 0.3789111410658792,
+      "dense_models": [
+        "minilm",
+        "e5s",
+        "e5b"
+      ],
+      "routing": {
+        "Aka_Gha": "stage6",
+        "Amh_Eth": "stage5_routed",
+        "Eng_Eth": "stage5_routed",
+        "Eng_Gha": "stage5_routed",
+        "Eng_Ken": "stage6",
+        "Eng_Uga": "stage5_routed",
+        "Lug_Uga": "stage5_routed",
+        "Swa_Ken": "stage6"
+      }
+    },
+    "stage7": {
+      "best_exp": "7_routed",
+      "best_wr": 0.37620494766827545,
+      "threshold": 0.38263,
+      "met_threshold": false,
+      "afrolm_model": "bonadossou/afrolm_active_learning",
+      "routing": {
+        "Aka_Gha": "stage5_routed",
+        "Amh_Eth": "stage5_routed",
+        "Eng_Eth": "stage7",
+        "Eng_Gha": "stage5_routed",
+        "Eng_Ken": "stage5_routed",
+        "Eng_Uga": "stage5_routed",
+        "Lug_Uga": "stage5_routed",
+        "Swa_Ken": "stage5_routed"
+      }
     }
   }
 }
