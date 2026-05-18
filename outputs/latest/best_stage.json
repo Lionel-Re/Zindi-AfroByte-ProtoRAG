@@ -1,0 +1,38 @@
+{
+  "best_experiment": "5A_LGB_rl_heavy+routing_Swa_Lug_S4",
+  "weighted_rouge_val": 0.37563,
+  "rouge1_val": 0.53457,
+  "rougel_val": 0.48063,
+  "stage_results": {
+    "stage1_sparse": {
+      "experiment": "E5_moe_by_subset",
+      "wr": 0.30644937186027954,
+      "r1": 0.4429690693180984,
+      "rl": 0.3852724762502248
+    },
+    "v3": {
+      "experiment": "E_lgb",
+      "wr": 0.31242476415340303
+    },
+    "stage4_ce": {
+      "experiment": "CE_LGB_all",
+      "wr": 0.3466643762195365
+    },
+    "stage5": {
+      "experiment": "5A_LGB_rl_heavy",
+      "wr": 0.3714754632202202,
+      "dense_ok": true,
+      "dense_models": [
+        "minilm",
+        "e5s"
+      ]
+    },
+    "stage5_routed": {
+      "experiment": "5A_LGB_rl_heavy+routing_Swa_Lug_S4",
+      "wr": 0.37563,
+      "r1": 0.53457,
+      "rl": 0.48063,
+      "routing": "Stage4 for Swa_Ken+Lug_Uga, Stage5 5A_LGB_rl_heavy for others"
+    }
+  }
+}

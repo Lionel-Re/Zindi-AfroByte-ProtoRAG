@@ -1,0 +1,19 @@
+{
+  "stage": "stage5_byt5",
+  "timestamp": "2026-05-17T19:15:12.814510",
+  "byt5_status": "trained",
+  "baseline_weighted_rouge": 0.30644937186027954,
+  "baseline_rouge1": 0.4429690693180984,
+  "baseline_rougel": 0.38527247625022476,
+  "byt5_alone_wr": null,
+  "hybrid_wr": null,
+  "best_mode": "baseline",
+  "best_wr": 0.30644937186027954,
+  "decision": "keep_baseline",
+  "error": null,
+  "training_time_s": 3447.0586879253387,
+  "byt5_alone_sample_wr": 0.06137797891414895,
+  "baseline_sample_wr": 0.3170868677629909,
+  "submission_checks": "passed",
+  "elapsed_s": 3510.9094066619873
+}

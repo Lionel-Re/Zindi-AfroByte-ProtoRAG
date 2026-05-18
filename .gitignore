@@ -1,0 +1,68 @@
+# =========================
+# Python / notebooks
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# =========================
+# Environments
+# =========================
+.venv/
+venv/
+env/
+.env
+.env.*
+*.egg-info/
+
+# =========================
+# HuggingFace / model caches
+# =========================
+hf_cache/
+.cache/
+transformers/
+sentence_transformers/
+datasets/
+*/hf_cache/
+*/transformers/
+*/sentence_transformers/
+*/datasets/
+
+# =========================
+# Large ML artifacts / checkpoints
+# =========================
+checkpoints/
+checkpoint*/
+models/
+model_cache/
+wandb/
+runs/
+lightning_logs/
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+*.tmp
+*.log.tmp
+.DS_Store
+
+# =========================
+# System / editor
+# =========================
+.vscode/*
+!.vscode/settings.json
+
+# =========================
+# Keep outputs, reports and submissions
+# Do NOT ignore outputs/latest or submissions_archive
+# =========================

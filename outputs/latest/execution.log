@@ -1,0 +1,1042 @@
+2026-05-17 17:56:42,829 INFO Loading data...
+2026-05-17 17:56:43,167 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 17:56:43,649 INFO Subsets: ['Aka_Gha', 'Amh_Eth', 'Eng_Eth', 'Eng_Gha', 'Eng_Ken', 'Eng_Uga', 'Lug_Uga', 'Swa_Ken']
+2026-05-17 17:56:44,549 INFO Fitting vectorizers on Train...
+2026-05-17 17:56:47,972 INFO   char_wb fitted in 3.4s, vocab=122336
+2026-05-17 17:56:53,984 INFO   char fitted in 6.0s, vocab=244564
+2026-05-17 17:56:55,027 INFO   word fitted in 1.0s, vocab=127205
+2026-05-17 17:56:55,027 INFO Benchmarking retrievers...
+2026-05-17 17:56:55,027 INFO   Benchmarking char_wb on 50 rows...
+2026-05-17 17:56:56,274 INFO   char_wb: 1.2s on 50 rows → ~167s projected for full val
+2026-05-17 17:56:56,275 INFO   char_wb OK
+2026-05-17 17:56:56,275 INFO   Benchmarking char on 50 rows...
+2026-05-17 17:56:58,995 INFO   char: 2.7s on 50 rows → ~364s projected for full val
+2026-05-17 17:56:59,000 WARNING   char too slow (364s projected), DISABLING
+2026-05-17 17:56:59,000 INFO   Benchmarking word on 50 rows...
+2026-05-17 17:56:59,329 INFO   word: 0.3s on 50 rows → ~44s projected for full val
+2026-05-17 17:56:59,329 INFO   word OK
+2026-05-17 17:56:59,329 INFO Active retrievers: ['char_wb', 'word']
+2026-05-17 17:56:59,329 INFO Building per-subset indices on Train...
+2026-05-17 17:57:06,685 INFO Retrieving top-20 for Val from each retriever...
+2026-05-17 17:58:01,629 INFO   char_wb val retrieval done in 54.9s
+2026-05-17 17:58:12,166 INFO   word val retrieval done in 10.5s
+2026-05-17 17:58:12,166 INFO Evaluating experiments on Val...
+2026-05-17 17:58:18,562 INFO   E_char_wb_top1: rouge1=0.4414 rougel=0.3836 weighted=0.3052
+2026-05-17 17:58:24,325 INFO   E_word_top1: rouge1=0.4063 rougel=0.3461 weighted=0.2784
+2026-05-17 17:58:30,432 INFO   E4_rrf_fusion: rouge1=0.4319 rougel=0.3731 weighted=0.2979
+2026-05-17 17:58:30,433 INFO Best global experiment: E_char_wb_top1 (wr=0.3052)
+2026-05-17 17:58:30,433 INFO Computing MoE by subset...
+2026-05-17 17:58:48,294 INFO Best by subset: {'Aka_Gha': 'E4_rrf_fusion', 'Amh_Eth': 'E4_rrf_fusion', 'Eng_Eth': 'E_word_top1', 'Eng_Gha': 'E4_rrf_fusion', 'Eng_Ken': 'E_char_wb_top1', 'Eng_Uga': 'E_char_wb_top1', 'Lug_Uga': 'E_char_wb_top1', 'Swa_Ken': 'E_char_wb_top1'}
+2026-05-17 17:58:54,239 INFO   E5_moe_by_subset: rouge1=0.4430 rougel=0.3853 weighted=0.3064
+2026-05-17 17:58:54,239 INFO Best global after MoE: E5_moe_by_subset
+2026-05-17 17:59:18,210 INFO Stage 1 best: E5_moe_by_subset wr=0.3064
+2026-05-17 17:59:18,821 INFO Stage 2: LightGBM-lite reranker...
+2026-05-17 17:59:18,821 INFO   Building LGB features for Val...
+2026-05-17 19:13:16,382 INFO ============================================================
+2026-05-17 19:13:16,384 INFO STAGE 5 — ByT5 contrôlé
+2026-05-17 19:13:16,384 INFO ============================================================
+2026-05-17 19:13:16,384 INFO Loading data...
+2026-05-17 19:13:16,840 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 19:13:16,841 INFO Baseline: WR=0.30645 R1=0.44297 RL=0.38527
+2026-05-17 19:13:22,046 INFO Device: cuda
+2026-05-17 19:13:22,073 INFO GPU: Tesla T4, VRAM: 15.6GB
+2026-05-17 19:13:22,073 INFO Loading tokenizer & model: google/byt5-small
+2026-05-17 19:13:22,219 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:13:22,220 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-17 19:13:22,226 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/config.json "HTTP/1.1 200 OK"
+2026-05-17 19:13:22,338 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:13:22,344 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 19:13:22,453 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-17 19:13:22,561 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-17 19:13:22,682 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:13:22,689 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/config.json "HTTP/1.1 200 OK"
+2026-05-17 19:13:22,843 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-05-17 19:13:22,947 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small "HTTP/1.1 200 OK"
+2026-05-17 19:13:23,073 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/commits/main "HTTP/1.1 200 OK"
+2026-05-17 19:13:23,201 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/discussions?p=0 "HTTP/1.1 200 OK"
+2026-05-17 19:13:23,332 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/commits/refs%2Fpr%2F3 "HTTP/1.1 200 OK"
+2026-05-17 19:13:23,455 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/refs%2Fpr%2F3/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-05-17 19:13:23,490 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:13:23,497 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/generation_config.json "HTTP/1.1 200 OK"
+2026-05-17 19:13:23,565 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/refs%2Fpr%2F3/model.safetensors "HTTP/1.1 302 Found"
+2026-05-17 19:13:24,165 INFO Model params: 299.6M
+2026-05-17 19:13:24,166 INFO Building train dataset (29815 rows, max_steps=2000)...
+2026-05-17 19:13:24,197 ERROR Stage 5 ByT5 FAILED: Seq2SeqTrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
+2026-05-17 19:13:24,199 ERROR Traceback (most recent call last):
+  File "/home/onyxia/work/src/stage5_byt5.py", line 196, in <module>
+    training_args = Seq2SeqTrainingArguments(
+        output_dir="/tmp/byt5_ckpt",
+    ...<13 lines>...
+        disable_tqdm=False,
+    )
+TypeError: Seq2SeqTrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
+
+2026-05-17 19:13:24,204 INFO Restored submission.csv from backup (after error)
+2026-05-17 19:13:24,204 INFO Running final submission checks...
+2026-05-17 19:13:24,259 INFO submission.csv checks PASSED. Shape: (2618, 4)
+2026-05-17 19:13:24,260 INFO Saved byt5_stage_report.json
+2026-05-17 19:13:24,261 INFO 
+2026-05-17 19:13:24,261 INFO ============================================================
+2026-05-17 19:13:24,261 INFO DONE_STAGE5_BYT5
+2026-05-17 19:13:24,261 INFO 
+2026-05-17 19:13:24,261 INFO ByT5 status:  failed
+2026-05-17 19:13:24,261 INFO Best stage:   baseline
+2026-05-17 19:13:24,261 INFO Best val WR:  0.30645
+2026-05-17 19:13:24,261 INFO Baseline WR:  0.30645
+2026-05-17 19:13:24,261 INFO Decision:     keep_baseline
+2026-05-17 19:13:24,261 INFO Final submission: /home/onyxia/work/outputs/latest/submission.csv
+2026-05-17 19:13:24,261 INFO ByT5 report:      /home/onyxia/work/outputs/latest/byt5_stage_report.json
+2026-05-17 19:13:24,261 INFO ============================================================
+2026-05-17 19:14:26,497 INFO ============================================================
+2026-05-17 19:14:26,497 INFO STAGE 5 — ByT5 contrôlé
+2026-05-17 19:14:26,498 INFO ============================================================
+2026-05-17 19:14:26,498 INFO Loading data...
+2026-05-17 19:14:27,013 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 19:14:27,014 INFO Baseline: WR=0.30645 R1=0.44297 RL=0.38527
+2026-05-17 19:14:32,167 INFO Device: cuda
+2026-05-17 19:14:32,195 INFO GPU: Tesla T4, VRAM: 15.6GB
+2026-05-17 19:14:32,195 INFO Loading tokenizer & model: google/byt5-small
+2026-05-17 19:14:32,362 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:14:32,363 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-17 19:14:32,368 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/config.json "HTTP/1.1 200 OK"
+2026-05-17 19:14:32,472 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:14:32,479 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 19:14:32,584 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-17 19:14:32,688 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-17 19:14:32,801 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:14:32,808 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/config.json "HTTP/1.1 200 OK"
+2026-05-17 19:14:32,953 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-05-17 19:14:33,061 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small "HTTP/1.1 200 OK"
+2026-05-17 19:14:33,191 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/commits/main "HTTP/1.1 200 OK"
+2026-05-17 19:14:33,316 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/discussions?p=0 "HTTP/1.1 200 OK"
+2026-05-17 19:14:33,438 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/commits/refs%2Fpr%2F3 "HTTP/1.1 200 OK"
+2026-05-17 19:14:33,565 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/refs%2Fpr%2F3/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-05-17 19:14:33,591 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:14:33,599 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/generation_config.json "HTTP/1.1 200 OK"
+2026-05-17 19:14:33,677 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/refs%2Fpr%2F3/model.safetensors "HTTP/1.1 302 Found"
+2026-05-17 19:14:34,234 INFO Model params: 299.6M
+2026-05-17 19:14:34,234 INFO Building train dataset (29815 rows, max_steps=2000)...
+2026-05-17 19:14:34,304 ERROR Stage 5 ByT5 FAILED: Seq2SeqTrainer.__init__() got an unexpected keyword argument 'tokenizer'
+2026-05-17 19:14:34,305 ERROR Traceback (most recent call last):
+  File "/home/onyxia/work/src/stage5_byt5.py", line 218, in <module>
+    trainer = Seq2SeqTrainer(
+        model=model,
+    ...<3 lines>...
+        data_collator=collator,
+    )
+TypeError: Seq2SeqTrainer.__init__() got an unexpected keyword argument 'tokenizer'
+
+2026-05-17 19:14:34,314 INFO Restored submission.csv from backup (after error)
+2026-05-17 19:14:34,314 INFO Running final submission checks...
+2026-05-17 19:14:34,367 INFO submission.csv checks PASSED. Shape: (2618, 4)
+2026-05-17 19:14:34,368 INFO Saved byt5_stage_report.json
+2026-05-17 19:14:34,369 INFO 
+2026-05-17 19:14:34,369 INFO ============================================================
+2026-05-17 19:14:34,369 INFO DONE_STAGE5_BYT5
+2026-05-17 19:14:34,369 INFO 
+2026-05-17 19:14:34,369 INFO ByT5 status:  failed
+2026-05-17 19:14:34,369 INFO Best stage:   baseline
+2026-05-17 19:14:34,369 INFO Best val WR:  0.30645
+2026-05-17 19:14:34,369 INFO Baseline WR:  0.30645
+2026-05-17 19:14:34,369 INFO Decision:     keep_baseline
+2026-05-17 19:14:34,369 INFO Final submission: /home/onyxia/work/outputs/latest/submission.csv
+2026-05-17 19:14:34,369 INFO ByT5 report:      /home/onyxia/work/outputs/latest/byt5_stage_report.json
+2026-05-17 19:14:34,369 INFO ============================================================
+2026-05-17 19:15:12,331 INFO ============================================================
+2026-05-17 19:15:12,331 INFO STAGE 5 — ByT5 contrôlé
+2026-05-17 19:15:12,331 INFO ============================================================
+2026-05-17 19:15:12,331 INFO Loading data...
+2026-05-17 19:15:12,813 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 19:15:12,814 INFO Baseline: WR=0.30645 R1=0.44297 RL=0.38527
+2026-05-17 19:15:17,975 INFO Device: cuda
+2026-05-17 19:15:18,002 INFO GPU: Tesla T4, VRAM: 15.6GB
+2026-05-17 19:15:18,002 INFO Loading tokenizer & model: google/byt5-small
+2026-05-17 19:15:18,152 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:15:18,161 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/config.json "HTTP/1.1 200 OK"
+2026-05-17 19:15:18,264 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:15:18,265 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-17 19:15:18,271 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 19:15:18,372 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-17 19:15:18,479 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-17 19:15:18,586 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:15:18,593 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/config.json "HTTP/1.1 200 OK"
+2026-05-17 19:15:18,740 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-05-17 19:15:18,847 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small "HTTP/1.1 200 OK"
+2026-05-17 19:15:18,969 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/commits/main "HTTP/1.1 200 OK"
+2026-05-17 19:15:19,096 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/discussions?p=0 "HTTP/1.1 200 OK"
+2026-05-17 19:15:19,217 INFO HTTP Request: GET https://huggingface.co/api/models/google/byt5-small/commits/refs%2Fpr%2F3 "HTTP/1.1 200 OK"
+2026-05-17 19:15:19,334 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/refs%2Fpr%2F3/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-05-17 19:15:19,397 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 19:15:19,405 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/google/byt5-small/68377bdc18a2ffec8a0533fef03b1c513a4dd49d/generation_config.json "HTTP/1.1 200 OK"
+2026-05-17 19:15:19,440 INFO HTTP Request: HEAD https://huggingface.co/google/byt5-small/resolve/refs%2Fpr%2F3/model.safetensors "HTTP/1.1 302 Found"
+2026-05-17 19:15:20,046 INFO Model params: 299.6M
+2026-05-17 19:15:20,047 INFO Building train dataset (29815 rows, max_steps=2000)...
+2026-05-17 19:15:20,112 INFO Starting ByT5 fine-tuning...
+2026-05-17 20:12:47,171 INFO Training done in 3447s (57.5min)
+2026-05-17 20:12:47,172 INFO Step 1: ByT5 eval on 200-sample Val (stratified by subset)...
+2026-05-17 20:12:47,181 INFO Sample size: 200
+2026-05-17 20:13:43,045 INFO Sample ByT5-alone: WR=0.06138 R1=0.08744 RL=0.07844
+2026-05-17 20:13:43,188 INFO Sample Baseline:   WR=0.31709 R1=0.45192 RL=0.40507
+2026-05-17 20:13:43,188 INFO ByT5 sample score too low (0.06138 vs 0.31709). Skipping full eval.
+2026-05-17 20:13:43,188 INFO Running final submission checks...
+2026-05-17 20:13:43,239 INFO submission.csv checks PASSED. Shape: (2618, 4)
+2026-05-17 20:13:43,241 INFO Saved byt5_stage_report.json
+2026-05-17 20:13:43,242 INFO 
+2026-05-17 20:13:43,242 INFO ============================================================
+2026-05-17 20:13:43,242 INFO DONE_STAGE5_BYT5
+2026-05-17 20:13:43,242 INFO 
+2026-05-17 20:13:43,242 INFO ByT5 status:  trained
+2026-05-17 20:13:43,242 INFO Best stage:   baseline
+2026-05-17 20:13:43,242 INFO Best val WR:  0.30645
+2026-05-17 20:13:43,242 INFO Baseline WR:  0.30645
+2026-05-17 20:13:43,242 INFO Decision:     keep_baseline
+2026-05-17 20:13:43,242 INFO Final submission: /home/onyxia/work/outputs/latest/submission.csv
+2026-05-17 20:13:43,242 INFO ByT5 report:      /home/onyxia/work/outputs/latest/byt5_stage_report.json
+2026-05-17 20:13:43,242 INFO ============================================================
+2026-05-17 20:29:15,619 INFO ============================================================
+2026-05-17 20:29:15,619 INFO V3 RETRIEVAL RERANK
+2026-05-17 20:29:15,619 INFO ============================================================
+2026-05-17 20:29:15,619 INFO Loading data...
+2026-05-17 20:29:16,093 INFO Train 29815 | Val 6686 | Test 2618 
+2026-05-17 20:29:17,033 INFO Fitting vectorizers on Train...
+2026-05-17 20:29:20,122 INFO   char_wb fit: 3.1s vocab=122336
+2026-05-17 20:29:23,022 INFO   char fit: 2.9s vocab=56821
+2026-05-17 20:29:24,004 INFO   word fit: 1.0s vocab=127205
+2026-05-17 20:29:28,809 INFO   byte fit: 4.8s vocab=128328
+2026-05-17 20:29:28,810 INFO Benchmarking retrievers...
+2026-05-17 20:29:29,869 INFO   char_wb: bench=0.44s/50rows → proj=59s
+2026-05-17 20:29:29,870 INFO   char_wb OK (bench<60s)
+2026-05-17 20:29:30,951 INFO   char: bench=0.46s/50rows → proj=62s
+2026-05-17 20:29:30,951 INFO   char OK (bench<60s)
+2026-05-17 20:29:31,256 INFO   word: bench=0.10s/50rows → proj=14s
+2026-05-17 20:29:31,256 INFO   word OK (bench<60s)
+2026-05-17 20:29:32,846 INFO   byte: bench=0.51s/20rows → proj=170s
+2026-05-17 20:29:32,847 INFO   byte OK (bench<60s)
+2026-05-17 20:29:32,847 INFO Active retrievers: ['char_wb', 'char', 'word', 'byte']
+2026-05-17 20:29:32,847 INFO Building per-subset indices on Train...
+2026-05-17 20:29:55,387 INFO Retrieving for Val...
+2026-05-17 20:30:48,138 INFO   char_wb val done in 52.8s
+2026-05-17 20:31:37,141 INFO   char val done in 49.0s
+2026-05-17 20:31:47,498 INFO   word val done in 10.4s
+2026-05-17 20:33:25,185 INFO   byte val done in 97.7s
+2026-05-17 20:33:25,186 INFO RRF weights: {'char_wb': 0.4, 'char': 0.3, 'word': 0.2, 'byte': 0.1}
+2026-05-17 20:33:25,186 INFO Evaluating experiments on Val...
+2026-05-17 20:33:31,008 INFO   E_char_wb_top1: R1=0.4414 RL=0.3836 WR=0.3052
+2026-05-17 20:33:36,960 INFO   E_char_top1: R1=0.4424 RL=0.3841 WR=0.3058
+2026-05-17 20:33:42,592 INFO   E_word_top1: R1=0.4063 RL=0.3461 WR=0.2784
+2026-05-17 20:33:48,299 INFO   E_byte_top1: R1=0.4368 RL=0.3781 WR=0.3015
+2026-05-17 20:33:53,985 INFO   E_rrf: R1=0.4350 RL=0.3762 WR=0.3002
+2026-05-17 20:34:22,217 INFO MoE best by subset: {'Aka_Gha': 'E_char_top1', 'Amh_Eth': 'E_byte_top1', 'Eng_Eth': 'E_byte_top1', 'Eng_Gha': 'E_rrf', 'Eng_Ken': 'E_char_top1', 'Eng_Uga': 'E_char_wb_top1', 'Lug_Uga': 'E_char_top1', 'Swa_Ken': 'E_char_wb_top1'}
+2026-05-17 20:34:27,871 INFO   E_moe: R1=0.4461 RL=0.3879 WR=0.3086
+2026-05-17 20:34:27,871 INFO Best sparse/RRF/MoE: E_moe WR=0.30856
+2026-05-17 20:34:28,393 INFO Stage 2 LightGBM-lite reranker...
+2026-05-17 20:34:28,393 INFO   Building LGB features for Val (fast)...
+2026-05-17 20:34:29,999 INFO   Features built: 57291 rows in 1.6s
+2026-05-17 20:34:29,999 INFO   Computing ROUGE targets (capped at 200 words)...
+2026-05-17 20:35:12,179 INFO   Targets computed in 42.2s
+2026-05-17 20:35:12,196 INFO   Training LGB model...
+2026-05-17 20:47:31,383 INFO   LGB trained in 739.2s, best_iter=79
+2026-05-17 20:47:40,651 INFO   LGB val: R1=0.4551 RL=0.3947 WR=0.3145 (baseline=0.30645)
+2026-05-17 20:47:40,651 INFO   LGB IMPROVES baseline! WR 0.30645 → 0.31446
+2026-05-17 20:47:40,652 INFO 
+Best experiment: E_lgb WR=0.31446 (baseline=0.30645)
+2026-05-17 20:47:40,652 INFO Refitting on Train+Val for Test...
+2026-05-17 20:47:51,870 INFO   refit char_wb in 11.1s
+2026-05-17 20:48:01,921 INFO   refit char in 10.1s
+2026-05-17 20:48:05,118 INFO   refit word in 3.2s
+2026-05-17 20:48:23,811 INFO   refit byte in 18.7s
+2026-05-17 20:48:23,811 INFO Test retrieval...
+2026-05-17 20:48:52,143 INFO   char_wb test done in 28.3s
+2026-05-17 20:49:16,872 INFO   char test done in 24.7s
+2026-05-17 20:49:21,545 INFO   word test done in 4.7s
+2026-05-17 20:50:15,962 INFO   byte test done in 54.4s
+2026-05-17 20:50:15,962 INFO Generating Test predictions...
+2026-05-17 20:50:15,962 INFO   Using LGB reranker for Test...
+
+
+2026-05-17 20:52:50,690 INFO ============================================================
+2026-05-17 20:52:50,690 INFO V3 RETRIEVAL RERANK
+2026-05-17 20:52:50,690 INFO ============================================================
+2026-05-17 20:52:50,690 INFO Loading data...
+2026-05-17 20:52:51,104 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 20:52:51,987 INFO Fitting vectorizers on Train...
+2026-05-17 20:52:55,166 INFO   char_wb fit: 3.2s vocab=122336
+2026-05-17 20:52:58,129 INFO   char fit: 3.0s vocab=56821
+2026-05-17 20:52:59,228 INFO   word fit: 1.1s vocab=127205
+2026-05-17 20:53:04,745 INFO   byte fit: 5.5s vocab=128328
+2026-05-17 20:53:04,745 INFO Benchmarking retrievers...
+2026-05-17 20:53:06,129 INFO   char_wb: bench=0.61s/50rows → proj=82s
+2026-05-17 20:53:06,129 INFO   char_wb OK (bench<60s)
+2026-05-17 20:53:07,548 INFO   char: bench=0.67s/50rows → proj=89s
+2026-05-17 20:53:07,548 INFO   char OK (bench<60s)
+2026-05-17 20:53:07,892 INFO   word: bench=0.11s/50rows → proj=15s
+2026-05-17 20:53:07,892 INFO   word OK (bench<60s)
+2026-05-17 20:53:09,419 INFO   byte: bench=0.46s/20rows → proj=153s
+2026-05-17 20:53:09,419 INFO   byte OK (bench<60s)
+2026-05-17 20:53:09,419 INFO Active retrievers: ['char_wb', 'char', 'word', 'byte']
+2026-05-17 20:53:09,419 INFO Building per-subset indices on Train...
+2026-05-17 20:53:31,881 INFO Retrieving for Val...
+2026-05-17 20:54:25,455 INFO   char_wb val done in 53.6s
+2026-05-17 20:55:13,524 INFO   char val done in 48.1s
+2026-05-17 20:55:23,890 INFO   word val done in 10.4s
+2026-05-17 20:57:04,111 INFO   byte val done in 100.2s
+2026-05-17 20:57:04,111 INFO RRF weights: {'char_wb': 0.4, 'char': 0.3, 'word': 0.2, 'byte': 0.1}
+2026-05-17 20:57:04,111 INFO Evaluating experiments on Val...
+2026-05-17 20:57:09,955 INFO   E_char_wb_top1: R1=0.4414 RL=0.3836 WR=0.3052
+2026-05-17 20:57:15,583 INFO   E_char_top1: R1=0.4424 RL=0.3841 WR=0.3058
+2026-05-17 20:57:20,917 INFO   E_word_top1: R1=0.4063 RL=0.3461 WR=0.2784
+2026-05-17 20:57:26,606 INFO   E_byte_top1: R1=0.4368 RL=0.3781 WR=0.3015
+2026-05-17 20:57:32,264 INFO   E_rrf: R1=0.4350 RL=0.3762 WR=0.3002
+2026-05-17 20:58:00,337 INFO MoE best by subset: {'Aka_Gha': 'E_char_top1', 'Amh_Eth': 'E_byte_top1', 'Eng_Eth': 'E_byte_top1', 'Eng_Gha': 'E_rrf', 'Eng_Ken': 'E_char_top1', 'Eng_Uga': 'E_char_wb_top1', 'Lug_Uga': 'E_char_top1', 'Swa_Ken': 'E_char_wb_top1'}
+2026-05-17 20:58:06,288 INFO   E_moe: R1=0.4461 RL=0.3879 WR=0.3086
+2026-05-17 20:58:06,288 INFO Best sparse/RRF/MoE: E_moe WR=0.30856
+2026-05-17 20:58:06,856 INFO Stage 2 LightGBM-lite reranker...
+2026-05-17 20:58:06,856 INFO   Building LGB features for Val (fast)...
+2026-05-17 20:58:08,480 INFO   Features built: 57291 rows in 1.6s
+2026-05-17 20:58:08,480 INFO   Computing ROUGE targets (capped at 200 words)...
+2026-05-17 20:58:49,109 INFO   Targets computed in 40.6s
+2026-05-17 20:58:49,121 INFO   Training LGB model...
+2026-05-17 20:58:49,262 INFO   LGB trained in 0.1s, best_iter=42
+2026-05-17 20:58:49,264 INFO   LGB model saved to /tmp/v3_lgb_model.txt
+2026-05-17 20:58:59,120 INFO   LGB val: R1=0.4524 RL=0.3920 WR=0.3124 (baseline=0.30645)
+2026-05-17 20:58:59,120 INFO   LGB IMPROVES baseline! WR 0.30645 → 0.31242
+2026-05-17 20:58:59,120 INFO 
+Best experiment: E_lgb WR=0.31242 (baseline=0.30645)
+2026-05-17 20:58:59,120 INFO Refitting on Train+Val for Test...
+2026-05-17 20:59:11,219 INFO   refit char_wb in 11.9s
+2026-05-17 20:59:21,180 INFO   refit char in 10.0s
+2026-05-17 20:59:24,160 INFO   refit word in 3.0s
+2026-05-17 20:59:40,921 INFO   refit byte in 16.8s
+2026-05-17 20:59:40,922 INFO Test retrieval...
+2026-05-17 21:00:10,836 INFO   char_wb test done in 29.9s
+2026-05-17 21:00:35,776 INFO   char test done in 24.9s
+2026-05-17 21:00:40,575 INFO   word test done in 4.8s
+2026-05-17 21:01:34,586 INFO   byte test done in 54.0s
+2026-05-17 21:01:34,586 INFO Generating Test predictions...
+2026-05-17 21:01:34,586 INFO   Using LGB reranker for Test...
+2026-05-17 21:02:05,155 INFO ============================================================
+2026-05-17 21:02:05,155 INFO V3 RETRIEVAL RERANK
+2026-05-17 21:02:05,155 INFO ============================================================
+2026-05-17 21:02:05,155 INFO Loading data...
+2026-05-17 21:02:05,660 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 21:02:06,548 INFO Fitting vectorizers on Train...
+2026-05-17 21:02:09,595 INFO   char_wb fit: 3.0s vocab=122336
+2026-05-17 21:02:12,137 INFO   char fit: 2.5s vocab=56821
+2026-05-17 21:02:13,054 INFO   word fit: 0.9s vocab=127205
+2026-05-17 21:02:17,797 INFO   byte fit: 4.7s vocab=128328
+2026-05-17 21:02:17,797 INFO Benchmarking retrievers...
+2026-05-17 21:02:19,056 INFO   char_wb: bench=0.59s/50rows → proj=79s
+2026-05-17 21:02:19,057 INFO   char_wb OK (bench<60s)
+2026-05-17 21:02:20,292 INFO   char: bench=0.56s/50rows → proj=75s
+2026-05-17 21:02:20,292 INFO   char OK (bench<60s)
+2026-05-17 21:02:20,591 INFO   word: bench=0.11s/50rows → proj=15s
+2026-05-17 21:02:20,591 INFO   word OK (bench<60s)
+2026-05-17 21:02:22,139 INFO   byte: bench=0.48s/20rows → proj=161s
+2026-05-17 21:02:22,139 INFO   byte OK (bench<60s)
+2026-05-17 21:02:22,139 INFO Active retrievers: ['char_wb', 'char', 'word', 'byte']
+2026-05-17 21:02:22,139 INFO Building per-subset indices on Train...
+2026-05-17 21:02:45,303 INFO Retrieving for Val...
+2026-05-17 21:03:37,523 INFO   char_wb val done in 52.2s
+2026-05-17 21:04:24,286 INFO   char val done in 46.8s
+2026-05-17 21:04:34,391 INFO   word val done in 10.1s
+2026-05-17 21:06:10,673 INFO   byte val done in 96.3s
+2026-05-17 21:06:10,674 INFO RRF weights: {'char_wb': 0.4, 'char': 0.3, 'word': 0.2, 'byte': 0.1}
+2026-05-17 21:06:10,674 INFO Evaluating experiments on Val...
+2026-05-17 21:06:16,297 INFO   E_char_wb_top1: R1=0.4414 RL=0.3836 WR=0.3052
+2026-05-17 21:06:22,040 INFO   E_char_top1: R1=0.4424 RL=0.3841 WR=0.3058
+2026-05-17 21:06:27,872 INFO   E_word_top1: R1=0.4063 RL=0.3461 WR=0.2784
+2026-05-17 21:06:33,909 INFO   E_byte_top1: R1=0.4368 RL=0.3781 WR=0.3015
+2026-05-17 21:06:40,030 INFO   E_rrf: R1=0.4350 RL=0.3762 WR=0.3002
+2026-05-17 21:07:09,681 INFO MoE best by subset: {'Aka_Gha': 'E_char_top1', 'Amh_Eth': 'E_byte_top1', 'Eng_Eth': 'E_byte_top1', 'Eng_Gha': 'E_rrf', 'Eng_Ken': 'E_char_top1', 'Eng_Uga': 'E_char_wb_top1', 'Lug_Uga': 'E_char_top1', 'Swa_Ken': 'E_char_wb_top1'}
+2026-05-17 21:07:15,657 INFO   E_moe: R1=0.4461 RL=0.3879 WR=0.3086
+2026-05-17 21:07:15,657 INFO Best sparse/RRF/MoE: E_moe WR=0.30856
+2026-05-17 21:07:16,164 INFO Stage 2 LightGBM-lite reranker...
+2026-05-17 21:07:16,165 INFO   Building LGB features for Val (fast)...
+2026-05-17 21:07:17,601 INFO   Features built: 57291 rows in 1.4s
+2026-05-17 21:07:17,601 INFO   Computing ROUGE targets (capped at 200 words)...
+2026-05-17 21:07:58,258 INFO   Targets computed in 40.7s
+2026-05-17 21:07:58,271 INFO   Loading cached LGB model from /tmp/v3_lgb_model.txt
+2026-05-17 21:08:07,533 INFO   LGB val: R1=0.4524 RL=0.3920 WR=0.3124 (baseline=0.30645)
+2026-05-17 21:08:07,533 INFO   LGB IMPROVES baseline! WR 0.30645 → 0.31242
+2026-05-17 21:08:07,533 INFO 
+Best experiment: E_lgb WR=0.31242 (baseline=0.30645)
+2026-05-17 21:08:07,533 INFO Refitting on Train+Val for Test...
+2026-05-17 21:08:17,946 INFO   refit char_wb in 10.3s
+2026-05-17 21:08:27,914 INFO   refit char in 10.0s
+2026-05-17 21:08:30,838 INFO   refit word in 2.9s
+2026-05-17 21:08:47,939 INFO   refit byte in 17.1s
+2026-05-17 21:08:47,940 INFO Test retrieval...
+2026-05-17 21:09:16,953 INFO   char_wb test done in 29.0s
+2026-05-17 21:09:41,278 INFO   char test done in 24.3s
+2026-05-17 21:09:45,887 INFO   word test done in 4.6s
+2026-05-17 21:10:39,278 INFO   byte test done in 53.4s
+2026-05-17 21:10:39,278 INFO Generating Test predictions...
+2026-05-17 21:10:39,278 INFO   Using LGB reranker for Test...
+2026-05-17 21:10:47,067 INFO Submission checks PASSED
+2026-05-17 21:10:47,245 INFO Updated submission.csv (WR 0.30645 → 0.31242)
+2026-05-17 21:10:47,248 INFO Updated best_stage.json
+2026-05-17 21:10:47,293 INFO Final submission.csv checks PASSED
+2026-05-17 21:10:47,293 INFO 
+============================================================
+2026-05-17 21:10:47,293 INFO DONE_V3
+2026-05-17 21:10:47,293 INFO Active retrievers: ['char_wb', 'char', 'word', 'byte']
+2026-05-17 21:10:47,293 INFO Best experiment:   E_lgb
+2026-05-17 21:10:47,293 INFO Best val WR:       0.31242
+2026-05-17 21:10:47,293 INFO Baseline WR:       0.30645
+2026-05-17 21:10:47,294 INFO Improved:          True
+2026-05-17 21:10:47,294 INFO LGB enabled:       True
+2026-05-17 21:10:47,294 INFO LGB WR:            0.31242476415340303
+2026-05-17 21:10:47,294 INFO Final submission:  /home/onyxia/work/outputs/latest/submission.csv
+2026-05-17 21:10:47,294 INFO V3 report:         /home/onyxia/work/outputs/latest/v3_retrieval_rerank_report.json
+2026-05-17 21:10:47,294 INFO ============================================================
+2026-05-17 21:47:32,204 INFO ======================
+======================================
+2026-05-17 21:47:32,204 INFO STAGE 4 — Cross-encoder reranking
+2026-05-17 21:47:32,204 INFO ============================================================
+2026-05-17 21:47:32,205 INFO Loading data...
+2026-05-17 21:47:32,640 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 21:47:33,579 INFO Fitting vectorizers on Train...
+2026-05-17 21:47:36,767 INFO   char_wb: 3.2s
+2026-05-17 21:47:39,501 INFO   char: 2.7s
+2026-05-17 21:47:40,470 INFO   word: 1.0s
+2026-05-17 21:47:45,325 INFO   byte: 4.9s
+2026-05-17 21:47:45,326 INFO Building per-subset indices...
+2026-05-17 21:47:57,297 INFO Retrieving top-20 for Val...
+2026-05-17 21:51:48,818 INFO Val retrieval done in 231.5s
+2026-05-17 21:51:50,129 INFO Loading cross-encoder...
+2026-05-17 21:51:53,053 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-05-17 21:51:53,055 INFO No modules.json found for cross-encoder/mmarco-mMiniLMv2-L12-H384-v1, initializing a new CrossEncoder model.
+2026-05-17 21:51:53,155 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 "HTTP/1.1 200 OK"
+2026-05-17 21:51:53,255 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 21:51:53,262 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 21:51:53,274 WARNING The Transformer `cache_dir` argument is deprecated. Please pass `cache_dir` via `model_kwargs`, `processor_kwargs`, and/or `config_kwargs` instead.
+2026-05-17 21:51:53,374 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 21:51:53,477 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 21:51:53,480 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-17 21:51:53,485 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 21:51:53,767 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 21:51:53,868 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 21:51:53,970 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 21:51:54,070 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 21:51:54,169 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 21:51:54,176 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 21:51:54,278 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 21:51:54,285 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 21:51:54,392 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 21:51:54,397 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 21:51:54,498 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 21:51:54,505 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 21:51:54,611 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-17 21:51:54,716 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-17 21:51:57,889 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 "HTTP/1.1 200 OK"
+2026-05-17 21:51:58,330 INFO   Loaded cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 on cuda:0
+2026-05-17 21:51:58,330 INFO Scoring all (query, candidate) pairs with CE...
+2026-05-17 21:52:00,027 INFO   Total pairs: 223989
+2026-05-17 21:52:00,536 INFO   CE progress: 0/223989 (1s)
+2026-05-17 21:52:53,298 INFO   CE progress: 8000/223989 (53s)
+2026-05-17 21:53:49,617 INFO   CE progress: 16000/223989 (110s)
+2026-05-17 21:54:47,901 INFO   CE progress: 24000/223989 (168s)
+2026-05-17 21:55:44,882 INFO   CE progress: 32000/223989 (225s)
+2026-05-17 21:56:41,006 INFO   CE progress: 40000/223989 (281s)
+2026-05-17 21:57:00,321 INFO   CE progress: 48000/223989 (300s)
+2026-05-17 21:57:19,715 INFO   CE progress: 56000/223989 (320s)
+2026-05-17 21:57:35,073 INFO   CE progress: 64000/223989 (335s)
+2026-05-17 21:57:49,730 INFO   CE progress: 72000/223989 (350s)
+2026-05-17 21:58:12,091 INFO   CE progress: 80000/223989 (372s)
+2026-05-17 21:58:39,212 INFO   CE progress: 88000/223989 (399s)
+2026-05-17 21:59:06,242 INFO   CE progress: 96000/223989 (426s)
+2026-05-17 21:59:33,488 INFO   CE progress: 104000/223989 (453s)
+2026-05-17 22:00:00,587 INFO   CE progress: 112000/223989 (481s)
+2026-05-17 22:00:26,300 INFO   CE progress: 120000/223989 (506s)
+2026-05-17 22:00:52,047 INFO   CE progress: 128000/223989 (532s)
+2026-05-17 22:01:18,513 INFO   CE progress: 136000/223989 (558s)
+2026-05-17 22:01:44,572 INFO   CE progress: 144000/223989 (585s)
+2026-05-17 22:02:11,246 INFO   CE progress: 152000/223989 (611s)
+2026-05-17 22:02:37,202 INFO   CE progress: 160000/223989 (637s)
+2026-05-17 22:03:02,952 INFO   CE progress: 168000/223989 (663s)
+2026-05-17 22:03:28,499 INFO   CE progress: 176000/223989 (688s)
+2026-05-17 22:04:03,742 INFO   CE progress: 184000/223989 (724s)
+2026-05-17 22:04:43,261 INFO   CE progress: 192000/223989 (763s)
+2026-05-17 22:05:23,098 INFO   CE progress: 200000/223989 (803s)
+2026-05-17 22:06:01,288 INFO   CE progress: 208000/223989 (841s)
+2026-05-17 22:06:30,937 INFO   CE progress: 216000/223989 (871s)
+2026-05-17 22:07:00,050 INFO   CE scoring done: 223989 scores in 900.0s (249 pairs/s)
+2026-05-17 22:07:00,188 INFO Evaluating experiments on Val...
+2026-05-17 22:07:05,396 INFO   CE_top5_all: R1=0.4356 RL=0.3739 WR=0.29950 (baseline=0.31242)
+2026-05-17 22:07:10,276 INFO   CE_top5_no_Aka_Amh: R1=0.4364 RL=0.3753 WR=0.30032
+2026-05-17 22:07:15,511 INFO   CE_top10_all: R1=0.4214 RL=0.3586 WR=0.28860 (baseline=0.31242)
+2026-05-17 22:07:20,808 INFO   CE_top10_no_Aka_Amh: R1=0.4230 RL=0.3606 WR=0.28994
+2026-05-17 22:07:26,332 INFO   CE_top20_all: R1=0.4069 RL=0.3430 WR=0.27749 (baseline=0.31242)
+2026-05-17 22:07:31,353 INFO   CE_top20_no_Aka_Amh: R1=0.4090 RL=0.3455 WR=0.27917
+2026-05-17 22:07:31,886 INFO Stage 4B: CE + LightGBM...
+2026-05-17 22:07:31,886 INFO   Building CE+LGB features for Val...
+2026-05-17 22:07:33,383 INFO   Features: 57291 rows in 1.5s
+2026-05-17 22:07:33,383 INFO   Computing ROUGE targets...
+2026-05-17 22:08:14,597 INFO   Targets computed in 41.2s
+2026-05-17 22:08:14,604 INFO   Training CE+LGB model...
+2026-05-17 22:08:14,754 INFO   LGB trained in 0.1s, iter=48
+2026-05-17 22:08:20,582 INFO   CE_LGB_all: R1=0.4974 RL=0.4396 WR=0.34666
+2026-05-17 22:08:25,827 INFO   CE_LGB_no_Aka_Amh: R1=0.4954 RL=0.4390 WR=0.34574
+2026-05-17 22:08:25,827 INFO 
+Best experiment: CE_LGB_all WR=0.34666 (V3 LGB=0.31242)
+2026-05-17 22:08:25,831 INFO Refitting on Train+Val for Test...
+2026-05-17 22:08:33,135 INFO   refit char_wb 7.1s
+2026-05-17 22:08:40,305 INFO   refit char 7.2s
+2026-05-17 22:08:42,394 INFO   refit word 2.1s
+2026-05-17 22:08:54,369 INFO   refit byte 12.0s
+2026-05-17 22:08:54,369 INFO Test retrieval...
+2026-05-17 22:11:01,343 INFO   Test retrieval done
+2026-05-17 22:11:01,343 INFO Scoring test pairs with CE...
+2026-05-17 22:11:02,005 INFO   Test pairs: 87863
+2026-05-17 22:11:02,175 INFO   Test CE: 0/87863 (0s)
+2026-05-17 22:11:29,950 INFO   Test CE: 4000/87863 (28s)
+2026-05-17 22:11:58,785 INFO   Test CE: 8000/87863 (57s)
+2026-05-17 22:12:28,709 INFO   Test CE: 12000/87863 (87s)
+2026-05-17 22:12:58,563 INFO   Test CE: 16000/87863 (117s)
+2026-05-17 22:13:16,995 INFO   Test CE: 20000/87863 (135s)
+2026-05-17 22:13:27,854 INFO   Test CE: 24000/87863 (146s)
+2026-05-17 22:13:42,003 INFO   Test CE: 28000/87863 (160s)
+2026-05-17 22:13:55,900 INFO   Test CE: 32000/87863 (174s)
+2026-05-17 22:14:09,896 INFO   Test CE: 36000/87863 (188s)
+2026-05-17 22:14:23,397 INFO   Test CE: 40000/87863 (201s)
+2026-05-17 22:14:36,568 INFO   Test CE: 44000/87863 (215s)
+2026-05-17 22:14:49,908 INFO   Test CE: 48000/87863 (228s)
+2026-05-17 22:15:03,556 INFO   Test CE: 52000/87863 (242s)
+2026-05-17 22:15:16,744 INFO   Test CE: 56000/87863 (255s)
+2026-05-17 22:15:29,943 INFO   Test CE: 60000/87863 (268s)
+2026-05-17 22:15:43,161 INFO   Test CE: 64000/87863 (281s)
+2026-05-17 22:15:56,877 INFO   Test CE: 68000/87863 (295s)
+2026-05-17 22:16:16,935 INFO   Test CE: 72000/87863 (315s)
+2026-05-17 22:16:37,138 INFO   Test CE: 76000/87863 (335s)
+2026-05-17 22:16:57,040 INFO   Test CE: 80000/87863 (355s)
+2026-05-17 22:17:12,359 INFO   Test CE: 84000/87863 (370s)
+2026-05-17 22:17:26,726 INFO   Test CE done in 384.7s
+2026-05-17 22:17:26,726 INFO   Using CE+LGB (k=10) for Test...
+2026-05-17 22:17:27,448 INFO Submission checks PASSED
+2026-05-17 22:17:27,628 INFO submission.csv updated: WR 0.31242 → 0.34666
+2026-05-17 22:18:13,348 INFO Final submission.csv checks PASSED
+2026-05-17 22:18:13,349 INFO 
+============================================================
+2026-05-17 22:18:13,349 INFO DONE_STAGE4_CE
+2026-05-17 22:18:13,349 INFO V3 LGB baseline WR: 0.31242
+2026-05-17 22:18:13,349 INFO Best CE experiment: CE_LGB_all
+2026-05-17 22:18:13,349 INFO Best val WR:        0.34666
+2026-05-17 22:18:13,349 INFO Delta vs V3 LGB:    +0.03424
+2026-05-17 22:18:13,349 INFO CE improved:        True
+2026-05-17 22:18:13,349 INFO Final submission:   /home/onyxia/work/outputs/latest/submission.csv
+2026-05-17 22:18:13,349 INFO ============================================================
+2026-05-17 22:18:13,349 INFO 
+All experiments:
+2026-05-17 22:18:13,349 INFO   ★ CE_LGB_all                         : WR=0.34666
+2026-05-17 22:18:13,349 INFO     CE_LGB_no_Aka_Amh                  : WR=0.34574
+2026-05-17 22:18:13,349 INFO     CE_top5_no_Aka_Amh                 : WR=0.30032
+2026-05-17 22:18:13,349 INFO     CE_top5_all                        : WR=0.29950
+2026-05-17 22:18:13,349 INFO     CE_top10_no_Aka_Amh                : WR=0.28994
+2026-05-17 22:18:13,349 INFO     CE_top10_all                       : WR=0.28860
+2026-05-17 22:18:13,349 INFO     CE_top20_no_Aka_Amh                : WR=0.27917
+2026-05-17 22:18:13,349 INFO     CE_top20_all                       : WR=0.27749
+2026-05-17 22:49:27,632 INFO ============================================================
+2026-05-17 22:49:27,632 INFO STAGE 5 — Dense + RougeL reranking + Phrase composer
+2026-05-17 22:49:27,632 INFO ============================================================
+2026-05-17 22:49:27,632 INFO Loading data...
+2026-05-17 22:49:28,059 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-17 22:49:28,961 INFO Fitting sparse vectorizers on Train...
+2026-05-17 22:49:32,225 INFO   char_wb: 3.3s
+2026-05-17 22:49:34,880 INFO   char: 2.7s
+2026-05-17 22:49:35,817 INFO   word: 0.9s
+2026-05-17 22:49:40,472 INFO   byte: 4.7s
+2026-05-17 22:49:40,472 INFO Building per-subset sparse indices...
+2026-05-17 22:49:51,835 INFO Sparse retrieval for Val...
+2026-05-17 22:53:37,395 INFO   done in 225.6s
+2026-05-17 22:53:38,785 INFO Loading cross-encoder...
+2026-05-17 22:53:42,014 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:42,016 INFO No modules.json found for cross-encoder/mmarco-mMiniLMv2-L12-H384-v1, initializing a new CrossEncoder model.
+2026-05-17 22:53:42,119 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 "HTTP/1.1 200 OK"
+2026-05-17 22:53:42,221 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:42,222 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-17 22:53:42,228 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:42,240 WARNING The Transformer `cache_dir` argument is deprecated. Please pass `cache_dir` via `model_kwargs`, `processor_kwargs`, and/or `config_kwargs` instead.
+2026-05-17 22:53:42,342 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:42,440 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:42,446 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:42,737 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:42,838 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:42,937 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:43,039 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:43,138 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:43,144 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:43,244 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:43,251 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:43,352 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:43,358 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:43,531 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:43,537 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:43,642 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:43,745 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-17 22:53:46,420 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 "HTTP/1.1 200 OK"
+2026-05-17 22:53:46,877 INFO   CE loaded on cuda:0
+2026-05-17 22:53:46,878 INFO Loading faiss with AVX512 support.
+2026-05-17 22:53:46,903 INFO Successfully loaded faiss with AVX512 support.
+2026-05-17 22:53:46,908 INFO [5A] Loading sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2...
+2026-05-17 22:53:47,009 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:47,015 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,022 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,123 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:47,130 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,137 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,139 INFO Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+2026-05-17 22:53:47,237 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:47,244 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,347 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:47,353 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,360 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,463 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:47,469 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,573 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:47,579 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,586 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,696 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:47,795 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:47,801 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,807 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:47,925 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-05-17 22:53:48,034 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/xet-read-token/e8f8c211226b894fcb81acc59f3b34ba3efd5f42 "HTTP/1.1 200 OK"
+2026-05-17 22:53:52,953 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:53,060 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:53,162 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:53,264 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:53,362 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:53,370 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:53,377 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:53,478 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:53,483 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:53,586 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:53,592 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:53,699 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:53,705 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:53,806 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:53,812 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:53,914 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:54,020 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-17 22:53:54,120 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-05-17 22:53:54,710 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer.model "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:54,809 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:54,907 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:54,914 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:54,921 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:55,065 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-05-17 22:53:57,001 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+2026-05-17 22:53:57,356 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:53:57,363 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:57,370 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-17 22:53:57,473 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+2026-05-17 22:53:57,656 INFO   loaded in 10.7s
+2026-05-17 22:53:57,656 INFO   Encoding Train (29815)...
+2026-05-17 22:54:25,719 INFO   Train encoded in 28.1s dim=384
+2026-05-17 22:54:25,819 INFO   Encoding Val for minilm...
+2026-05-17 22:54:34,837 INFO   Val dense retrieval done in 9.0s
+2026-05-17 22:54:34,837 INFO [5A] Loading intfloat/multilingual-e5-small...
+2026-05-17 22:54:34,957 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:34,964 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:34,973 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,071 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:35,074 INFO Loading SentenceTransformer model from intfloat/multilingual-e5-small.
+2026-05-17 22:54:35,177 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:35,276 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:35,283 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,291 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,394 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:35,400 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,500 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:35,506 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,513 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,621 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:35,720 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:35,727 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,734 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:35,841 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-05-17 22:54:35,940 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/xet-read-token/614241f622f53c4eeff9890bdc4f31cfecc418b3 "HTTP/1.1 200 OK"
+2026-05-17 22:54:39,784 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:39,884 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:39,984 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:40,091 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:40,236 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:40,243 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:40,250 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:40,350 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:40,356 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:40,458 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:40,464 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:40,569 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:40,576 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:40,683 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:40,689 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:40,793 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:40,909 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-17 22:54:41,015 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/sentencepiece.bpe.model "HTTP/1.1 302 Found"
+2026-05-17 22:54:41,597 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-05-17 22:54:41,957 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:42,057 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:42,062 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:42,068 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:42,171 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-05-17 22:54:45,541 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-05-17 22:54:45,814 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-17 22:54:45,821 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:45,828 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-17 22:54:45,973 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-05-17 22:54:46,533 INFO   loaded in 11.7s
+2026-05-17 22:54:46,533 INFO   Encoding Train (29815)...
+2026-05-17 22:55:17,370 INFO   Train encoded in 30.8s dim=384
+2026-05-17 22:55:17,471 INFO   Encoding Val for e5s...
+2026-05-17 22:55:28,542 INFO   Val dense retrieval done in 11.1s
+2026-05-17 22:55:28,542 INFO Dense models active: ['minilm', 'e5s']
+2026-05-17 22:55:28,542 INFO CE scoring val pool (sparse+dense)...
+2026-05-17 22:55:31,538 INFO   Total val pairs: 374065
+2026-05-17 22:55:31,838 INFO   CE progress: 0/374065 (0s)
+2026-05-17 22:56:30,028 INFO   CE progress: 8000/374065 (58s)
+2026-05-17 22:57:28,209 INFO   CE progress: 16000/374065 (117s)
+2026-05-17 22:58:25,382 INFO   CE progress: 24000/374065 (174s)
+2026-05-17 22:59:22,009 INFO   CE progress: 32000/374065 (230s)
+2026-05-17 23:00:17,314 INFO   CE progress: 40000/374065 (286s)
+2026-05-17 23:01:13,550 INFO   CE progress: 48000/374065 (342s)
+2026-05-17 23:02:07,753 INFO   CE progress: 56000/374065 (396s)
+2026-05-17 23:03:02,987 INFO   CE progress: 64000/374065 (451s)
+2026-05-17 23:03:57,706 INFO   CE progress: 72000/374065 (506s)
+2026-05-17 23:04:24,048 INFO   CE progress: 80000/374065 (533s)
+2026-05-17 23:04:43,234 INFO   CE progress: 88000/374065 (552s)
+2026-05-17 23:05:02,359 INFO   CE progress: 96000/374065 (571s)
+2026-05-17 23:05:20,841 INFO   CE progress: 104000/374065 (589s)
+2026-05-17 23:05:35,329 INFO   CE progress: 112000/374065 (604s)
+2026-05-17 23:05:49,687 INFO   CE progress: 120000/374065 (618s)
+2026-05-17 23:06:04,404 INFO   CE progress: 128000/374065 (633s)
+2026-05-17 23:06:28,664 INFO   CE progress: 136000/374065 (657s)
+2026-05-17 23:06:55,185 INFO   CE progress: 144000/374065 (684s)
+2026-05-17 23:07:21,902 INFO   CE progress: 152000/374065 (710s)
+2026-05-17 23:07:48,455 INFO   CE progress: 160000/374065 (737s)
+2026-05-17 23:08:15,062 INFO   CE progress: 168000/374065 (764s)
+2026-05-17 23:08:41,990 INFO   CE progress: 176000/374065 (790s)
+2026-05-17 23:09:08,806 INFO   CE progress: 184000/374065 (817s)
+2026-05-17 23:09:34,065 INFO   CE progress: 192000/374065 (843s)
+2026-05-17 23:09:59,313 INFO   CE progress: 200000/374065 (868s)
+2026-05-17 23:10:24,692 INFO   CE progress: 208000/374065 (893s)
+2026-05-17 23:10:50,028 INFO   CE progress: 216000/374065 (918s)
+2026-05-17 23:11:15,717 INFO   CE progress: 224000/374065 (944s)
+2026-05-17 23:11:41,125 INFO   CE progress: 232000/374065 (970s)
+2026-05-17 23:12:06,534 INFO   CE progress: 240000/374065 (995s)
+2026-05-17 23:12:31,684 INFO   CE progress: 248000/374065 (1020s)
+2026-05-17 23:12:57,483 INFO   CE progress: 256000/374065 (1046s)
+2026-05-17 23:13:23,553 INFO   CE progress: 264000/374065 (1072s)
+2026-05-17 23:13:49,343 INFO   CE progress: 272000/374065 (1098s)
+2026-05-17 23:14:15,268 INFO   CE progress: 280000/374065 (1124s)
+2026-05-17 23:14:41,188 INFO   CE progress: 288000/374065 (1150s)
+2026-05-17 23:15:16,543 INFO   CE progress: 296000/374065 (1185s)
+2026-05-17 23:15:56,078 INFO   CE progress: 304000/374065 (1225s)
+2026-05-17 23:16:36,063 INFO   CE progress: 312000/374065 (1265s)
+2026-05-17 23:17:15,968 INFO   CE progress: 320000/374065 (1304s)
+2026-05-17 23:17:55,774 INFO   CE progress: 328000/374065 (1344s)
+2026-05-17 23:18:35,370 INFO   CE progress: 336000/374065 (1384s)
+2026-05-17 23:19:14,725 INFO   CE progress: 344000/374065 (1423s)
+2026-05-17 23:19:44,284 INFO   CE progress: 352000/374065 (1453s)
+2026-05-17 23:20:13,910 INFO   CE progress: 360000/374065 (1482s)
+2026-05-17 23:20:43,238 INFO   CE progress: 368000/374065 (1512s)
+2026-05-17 23:21:05,433 INFO   CE done: 374065 pairs in 1533.9s (244 p/s)
+2026-05-17 23:21:05,631 INFO Building Stage 5 features for Val...
+2026-05-17 23:21:36,070 INFO   285433 rows, 29 cols in 30.4s
+2026-05-17 23:21:36,071 INFO Computing ROUGE targets...
+2026-05-17 23:24:59,752 INFO   done in 203.7s
+2026-05-17 23:25:02,030 INFO   LGB_avg: 1.6s iter=117
+2026-05-17 23:25:09,318 INFO   5A_LGB_avg: R1=0.5273 RL=0.4725 WR=0.36992 (Δ=+0.02326)
+2026-05-17 23:25:10,932 INFO   LGB_rl_heavy: 1.5s iter=131
+2026-05-17 23:25:17,807 INFO   5A_LGB_rl_heavy: R1=0.5292 RL=0.4748 WR=0.37148 (Δ=+0.02482)
+2026-05-17 23:25:19,528 INFO   LGB_comp: 1.7s iter=117
+2026-05-17 23:25:26,710 INFO   5A_LGB_comp: R1=0.5273 RL=0.4725 WR=0.36992 (Δ=+0.02326)
+2026-05-17 23:25:26,710 INFO 
+Stage 5C: Phrase composer (base: 5A_LGB_rl_heavy)...
+2026-05-17 23:25:38,925 INFO   5C_composer: R1=0.4728 RL=0.3234 WR=0.29458 (Δ=-0.05208)
+2026-05-17 23:25:44,711 INFO   5C_hyb_aka : R1=0.5297 RL=0.4724 WR=0.37077 (Δ=+0.02411)
+2026-05-17 23:25:44,712 INFO 
+============================================================
+2026-05-17 23:25:44,717 INFO STAGE 5 — FINAL COMPARISON
+2026-05-17 23:25:44,717 INFO   Baseline (Stage4 CE_LGB_all): WR=0.34666
+2026-05-17 23:25:44,717 INFO   ★ 5A_LGB_rl_heavy                    : R1=0.5292 RL=0.4748 WR=0.37148 (Δ=+0.02482)
+2026-05-17 23:25:44,717 INFO   ★ 5C_hyb_aka                         : R1=0.5297 RL=0.4724 WR=0.37077 (Δ=+0.02411)
+2026-05-17 23:25:44,717 INFO   ★ 5A_LGB_avg                         : R1=0.5273 RL=0.4725 WR=0.36992 (Δ=+0.02326)
+2026-05-17 23:25:44,717 INFO   ★ 5A_LGB_comp                        : R1=0.5273 RL=0.4725 WR=0.36992 (Δ=+0.02326)
+2026-05-17 23:25:44,717 INFO     5C_composer                        : R1=0.4728 RL=0.3234 WR=0.29458 (Δ=-0.05208)
+2026-05-17 23:25:44,717 INFO 
+Best Stage 5 experiment: 5A_LGB_rl_heavy WR=0.37148 (+0.02482 vs Stage 4)
+2026-05-17 23:26:13,333 INFO Saved stage5_validation_scores_by_subset.csv
+2026-05-17 23:26:13,333 INFO 
+Building Test predictions for 5A_LGB_rl_heavy...
+2026-05-17 23:26:13,471 INFO   Refitting sparse vectorizers on Train+Val...
+2026-05-17 23:26:17,080 INFO     char_wb: 3.6s
+2026-05-17 23:26:20,072 INFO     char: 3.0s
+2026-05-17 23:26:21,184 INFO     word: 1.1s
+2026-05-17 23:26:26,913 INFO     byte: 5.7s
+2026-05-17 23:26:40,148 INFO   Sparse retrieval for Test...
+2026-05-17 23:28:44,930 INFO     done in 124.8s
+2026-05-17 23:28:44,930 INFO   Encoding base_df for dense (Train+Val)...
+2026-05-17 23:29:23,536 INFO     base_df encoded minilm in 38.6s
+2026-05-17 23:30:07,279 INFO     base_df encoded e5s in 43.7s
+2026-05-17 23:30:07,279 INFO   Dense retrieval test for minilm...
+2026-05-17 23:30:11,964 INFO     done in 4.7s
+2026-05-17 23:30:11,964 INFO   Dense retrieval test for e5s...
+2026-05-17 23:30:17,521 INFO     done in 5.6s
+2026-05-17 23:30:17,521 INFO   CE scoring test pool...
+2026-05-17 23:30:18,709 INFO     Test pairs: 147951
+2026-05-17 23:30:18,871 INFO     CE test: 0/147951 (0s)
+2026-05-17 23:30:48,796 INFO     CE test: 4000/147951 (30s)
+2026-05-17 23:31:17,460 INFO     CE test: 8000/147951 (59s)
+2026-05-17 23:31:45,961 INFO     CE test: 12000/147951 (87s)
+2026-05-17 23:32:14,704 INFO     CE test: 16000/147951 (116s)
+2026-05-17 23:32:44,022 INFO     CE test: 20000/147951 (145s)
+2026-05-17 23:33:12,338 INFO     CE test: 24000/147951 (174s)
+2026-05-17 23:33:40,525 INFO     CE test: 28000/147951 (202s)
+2026-05-17 23:34:09,637 INFO     CE test: 32000/147951 (231s)
+2026-05-17 23:34:22,492 INFO     CE test: 36000/147951 (244s)
+2026-05-17 23:34:31,188 INFO     CE test: 40000/147951 (252s)
+2026-05-17 23:34:44,574 INFO     CE test: 44000/147951 (266s)
+2026-05-17 23:34:58,150 INFO     CE test: 48000/147951 (279s)
+2026-05-17 23:35:11,893 INFO     CE test: 52000/147951 (293s)
+2026-05-17 23:35:25,324 INFO     CE test: 56000/147951 (307s)
+2026-05-17 23:35:38,744 INFO     CE test: 60000/147951 (320s)
+2026-05-17 23:35:52,215 INFO     CE test: 64000/147951 (334s)
+2026-05-17 23:36:04,896 INFO     CE test: 68000/147951 (346s)
+2026-05-17 23:36:17,425 INFO     CE test: 72000/147951 (359s)
+2026-05-17 23:36:30,337 INFO     CE test: 76000/147951 (372s)
+2026-05-17 23:36:43,287 INFO     CE test: 80000/147951 (385s)
+2026-05-17 23:36:56,243 INFO     CE test: 84000/147951 (398s)
+2026-05-17 23:37:09,448 INFO     CE test: 88000/147951 (411s)
+2026-05-17 23:37:22,347 INFO     CE test: 92000/147951 (424s)
+2026-05-17 23:37:35,225 INFO     CE test: 96000/147951 (437s)
+2026-05-17 23:37:48,318 INFO     CE test: 100000/147951 (450s)
+2026-05-17 23:38:01,465 INFO     CE test: 104000/147951 (463s)
+2026-05-17 23:38:14,324 INFO     CE test: 108000/147951 (476s)
+2026-05-17 23:38:29,406 INFO     CE test: 112000/147951 (491s)
+2026-05-17 23:38:49,348 INFO     CE test: 116000/147951 (511s)
+2026-05-17 23:39:09,330 INFO     CE test: 120000/147951 (531s)
+2026-05-17 23:39:29,336 INFO     CE test: 124000/147951 (551s)
+2026-05-17 23:39:49,350 INFO     CE test: 128000/147951 (571s)
+2026-05-17 23:40:09,363 INFO     CE test: 132000/147951 (591s)
+2026-05-17 23:40:26,775 INFO     CE test: 136000/147951 (608s)
+2026-05-17 23:40:41,431 INFO     CE test: 140000/147951 (623s)
+2026-05-17 23:40:56,333 INFO     CE test: 144000/147951 (638s)
+2026-05-17 23:41:11,233 INFO     Test CE done in 652.5s
+2026-05-17 23:41:11,234 INFO   Building test features...
+2026-05-17 23:41:23,774 INFO     112854 rows in 12.5s
+2026-05-17 23:41:24,170 INFO Submission checks PASSED
+2026-05-17 23:41:24,348 INFO submission.csv updated: 0.34666 → 0.37148
+2026-05-17 23:41:30,127 INFO Changed rows vs Stage 4: 3149/6686
+2026-05-17 23:41:30,183 INFO Final submission.csv checks PASSED
+2026-05-17 23:41:30,183 INFO 
+============================================================
+2026-05-17 23:41:30,183 INFO DONE_STAGE5
+2026-05-17 23:41:30,183 INFO Best previous public : 0.703354
+2026-05-17 23:41:30,184 INFO Best previous Val    : 0.34666
+2026-05-17 23:41:30,184 INFO Best Stage5 Val      : 0.37148
+2026-05-17 23:41:30,184 INFO Delta vs Stage4      : +0.02482
+2026-05-17 23:41:30,184 INFO Best strategy        : 5A_LGB_rl_heavy
+2026-05-17 23:41:30,184 INFO Dense active         : True ['minilm', 'e5s']
+2026-05-17 23:41:30,184 INFO Final submission     : /home/onyxia/work/outputs/latest/submission.csv
+2026-05-17 23:41:30,184 INFO Candidate for public : YES
+2026-05-17 23:41:30,184 INFO Total elapsed        : 3123s
+2026-05-17 23:41:30,184 INFO ============================================================
+2026-05-18 00:08:07,394 INFO ============================================================
+2026-05-18 00:08:07,394 INFO STAGE 6A — e5-base dense + enriched LGB + subset routing
+2026-05-18 00:08:07,394 INFO ============================================================
+2026-05-18 00:08:07,394 INFO Loading data...
+2026-05-18 00:08:07,847 INFO Train 29815 | Val 6686 | Test 2618
+2026-05-18 00:08:07,847 INFO Loading Stage5 reference predictions...
+2026-05-18 00:08:08,018 INFO   Stage5 val preds loaded: 6686
+2026-05-18 00:08:08,187 INFO   Stage4 val preds loaded: 6686
+2026-05-18 00:08:13,788 INFO   Stage5 routed Val WR verify: 0.37563 (expect 0.37563)
+2026-05-18 00:08:14,665 INFO Fitting sparse vectorizers on Train...
+2026-05-18 00:08:17,917 INFO   char_wb: 3.3s
+2026-05-18 00:08:20,771 INFO   char: 2.9s
+2026-05-18 00:08:21,785 INFO   word: 1.0s
+2026-05-18 00:08:26,829 INFO   byte: 5.0s
+2026-05-18 00:08:26,829 INFO Building per-subset sparse indices...
+2026-05-18 00:08:38,768 INFO Sparse retrieval for Val...
+2026-05-18 00:12:29,279 INFO   done in 230.5s
+2026-05-18 00:12:30,648 INFO Loading faiss with AVX512 support.
+2026-05-18 00:12:30,670 INFO Successfully loaded faiss with AVX512 support.
+2026-05-18 00:12:33,516 INFO [6A] Loading model sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2...
+2026-05-18 00:12:33,657 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:33,662 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:33,761 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:33,768 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:33,770 INFO Loading SentenceTransformer model from sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2.
+2026-05-18 00:12:33,868 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:33,869 WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-05-18 00:12:33,875 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:33,975 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:33,982 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/README.md "HTTP/1.1 200 OK"
+2026-05-18 00:12:34,080 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:34,087 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/modules.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:34,187 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:34,193 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:34,300 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:12:34,401 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:34,407 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:34,686 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:12:34,788 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:12:34,891 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:12:34,991 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:12:35,094 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:35,099 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:35,197 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:35,204 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:35,311 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:35,318 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:35,422 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:35,429 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:35,529 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:35,535 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:35,638 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-18 00:12:35,741 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-18 00:12:37,621 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+2026-05-18 00:12:37,976 INFO HTTP Request: HEAD https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:12:37,983 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2/e8f8c211226b894fcb81acc59f3b34ba3efd5f42/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-18 00:12:38,083 INFO HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 "HTTP/1.1 200 OK"
+2026-05-18 00:12:38,501 INFO   Loaded in 5.0s
+2026-05-18 00:12:38,501 INFO   Encoding Train (29815)...
+2026-05-18 00:13:05,531 INFO   Train encoded in 27.0s dim=384, cached
+2026-05-18 00:13:11,991 INFO   Val encoded in 6.4s, cached
+2026-05-18 00:13:14,240 INFO   Val dense retrieval done for minilm
+2026-05-18 00:13:14,240 INFO [6A] Loading model intfloat/multilingual-e5-small...
+2026-05-18 00:13:14,353 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:14,360 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:14,463 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:14,465 INFO Loading SentenceTransformer model from intfloat/multilingual-e5-small.
+2026-05-18 00:13:14,565 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:14,663 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:14,670 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md "HTTP/1.1 200 OK"
+2026-05-18 00:13:14,775 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:14,781 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/modules.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:14,888 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:14,895 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:14,998 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:15,097 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:15,103 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:15,615 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:15,714 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:15,814 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:15,917 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:16,017 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:16,023 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:16,123 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:16,129 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:16,229 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:16,235 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:16,339 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:16,345 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:16,451 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:16,458 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:16,559 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:16,664 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-18 00:13:19,083 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-05-18 00:13:19,861 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:19,866 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-small/614241f622f53c4eeff9890bdc4f31cfecc418b3/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:20,004 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-small "HTTP/1.1 200 OK"
+2026-05-18 00:13:20,314 INFO   Loaded in 6.1s
+2026-05-18 00:13:20,315 INFO   Encoding Train (29815)...
+2026-05-18 00:13:49,341 INFO   Train encoded in 29.0s dim=384, cached
+2026-05-18 00:13:57,164 INFO   Val encoded in 7.7s, cached
+2026-05-18 00:13:59,462 INFO   Val dense retrieval done for e5s
+2026-05-18 00:13:59,462 INFO [6A] Loading model intfloat/multilingual-e5-base...
+2026-05-18 00:13:59,578 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:13:59,584 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:59,681 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json "HTTP/1.1 200 OK"
+2026-05-18 00:13:59,784 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:59,787 INFO Loading SentenceTransformer model from intfloat/multilingual-e5-base.
+2026-05-18 00:13:59,888 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:13:59,995 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:00,008 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/README.md "HTTP/1.1 200 OK"
+2026-05-18 00:14:00,114 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/README.md "HTTP/1.1 200 OK"
+2026-05-18 00:14:00,220 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:00,232 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:00,335 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:00,346 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:00,357 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:00,458 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:00,558 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:00,564 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:00,697 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-05-18 00:14:00,806 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/xet-read-token/d128750597153bb5987e10b1c3493a34e5a4502a "HTTP/1.1 200 OK"
+2026-05-18 00:14:12,668 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:12,767 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:12,869 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:12,971 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:13,069 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:13,075 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:13,082 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:13,183 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:13,189 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:13,293 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:13,298 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:13,406 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:13,413 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:13,514 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:13,614 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-18 00:14:13,721 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/sentencepiece.bpe.model "HTTP/1.1 302 Found"
+2026-05-18 00:14:14,466 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+2026-05-18 00:14:14,804 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:14,907 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:14,913 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:14,920 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:15,022 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-05-18 00:14:17,761 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-05-18 00:14:17,920 INFO HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:14:17,926 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:17,934 INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-05-18 00:14:18,046 INFO HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-05-18 00:14:18,459 INFO   Loaded in 19.0s
+2026-05-18 00:14:18,459 INFO   Encoding Train (29815)...
+2026-05-18 00:15:54,801 INFO   Train encoded in 96.3s dim=768, cached
+2026-05-18 00:16:19,736 INFO   Val encoded in 24.8s, cached
+2026-05-18 00:16:24,696 INFO   Val dense retrieval done for e5b
+2026-05-18 00:16:24,697 INFO Dense models active: ['minilm', 'e5s', 'e5b']
+2026-05-18 00:16:24,697 INFO Loading cross-encoder...
+2026-05-18 00:16:24,814 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/modules.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:16:24,817 INFO No modules.json found for cross-encoder/mmarco-mMiniLMv2-L12-H384-v1, initializing a new CrossEncoder model.
+2026-05-18 00:16:24,929 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 "HTTP/1.1 200 OK"
+2026-05-18 00:16:25,071 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:16:25,166 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:16:25,173 WARNING The Transformer `cache_dir` argument is deprecated. Please pass `cache_dir` via `model_kwargs`, `processor_kwargs`, and/or `config_kwargs` instead.
+2026-05-18 00:16:25,276 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:16:25,396 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:16:25,402 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:16:25,634 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:16:25,740 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:16:25,839 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:16:25,939 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-05-18 00:16:26,040 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:16:26,047 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:16:26,147 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:16:26,154 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:16:26,257 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:16:26,263 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/config.json "HTTP/1.1 200 OK"
+2026-05-18 00:16:26,368 INFO HTTP Request: HEAD https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-05-18 00:16:26,374 INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-05-18 00:16:26,477 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-05-18 00:16:26,578 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-05-18 00:16:29,223 INFO HTTP Request: GET https://huggingface.co/api/models/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 "HTTP/1.1 200 OK"
+2026-05-18 00:16:29,451 INFO   CE loaded on cuda:0
+2026-05-18 00:16:29,451 INFO CE scoring val pool (all sparse+dense candidates)...
+2026-05-18 00:16:32,845 INFO   Total val pairs: 409490
+2026-05-18 00:16:33,130 INFO   CE: 0/409490 (0s, ETA 0s)
+2026-05-18 00:17:29,071 INFO   CE: 8000/409490 (56s, ETA 2819s)
+2026-05-18 00:18:24,491 INFO   CE: 16000/409490 (112s, ETA 2744s)
+2026-05-18 00:19:20,267 INFO   CE: 24000/409490 (167s, ETA 2688s)
+2026-05-18 00:20:14,849 INFO   CE: 32000/409490 (222s, ETA 2618s)
+2026-05-18 00:21:10,521 INFO   CE: 40000/409490 (278s, ETA 2564s)
+2026-05-18 00:22:04,858 INFO   CE: 48000/409490 (332s, ETA 2500s)
+2026-05-18 00:23:00,715 INFO   CE: 56000/409490 (388s, ETA 2448s)
+2026-05-18 00:23:54,093 INFO   CE: 64000/409490 (441s, ETA 2382s)
+2026-05-18 00:24:48,815 INFO   CE: 72000/409490 (496s, ETA 2324s)
+2026-05-18 00:25:43,291 INFO   CE: 80000/409490 (550s, ETA 2267s)
+2026-05-18 00:26:20,635 INFO   CE: 88000/409490 (588s, ETA 2147s)
+2026-05-18 00:26:40,096 INFO   CE: 96000/409490 (607s, ETA 1983s)
+2026-05-18 00:26:59,120 INFO   CE: 104000/409490 (626s, ETA 1839s)
+2026-05-18 00:27:18,252 INFO   CE: 112000/409490 (645s, ETA 1714s)

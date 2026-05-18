@@ -1,0 +1,10 @@
+{
+  "Aka_Gha": "E4_rrf_fusion",
+  "Amh_Eth": "E4_rrf_fusion",
+  "Eng_Eth": "E_word_top1",
+  "Eng_Gha": "E4_rrf_fusion",
+  "Eng_Ken": "E_char_wb_top1",
+  "Eng_Uga": "E_char_wb_top1",
+  "Lug_Uga": "E_char_wb_top1",
+  "Swa_Ken": "E_char_wb_top1"
+}

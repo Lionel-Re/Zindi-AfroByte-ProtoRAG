@@ -1,0 +1,80 @@
+{
+  "run_date": "2026-05-17T17:37:49.040402",
+  "runtime_seconds": 221.2,
+  "train_size": 29815,
+  "val_size": 6686,
+  "test_size": 2618,
+  "active_retrievers": [
+    "char_wb",
+    "word"
+  ],
+  "disabled_retrievers": [
+    "char"
+  ],
+  "experiments_evaluated": [
+    "E_char_wb_top1",
+    "E_word_top1",
+    "E4_rrf_fusion",
+    "E5_moe_by_subset"
+  ],
+  "best_experiment": "E5_moe_by_subset",
+  "best_weighted_rouge_val": 0.30644937186027954,
+  "stage2_lightgbm": false,
+  "stage3_dense": false,
+  "stage4_crossencoder": false,
+  "stage5_byt5": {
+    "status": "keep_baseline",
+    "byt5_status": "trained",
+    "best_mode": "baseline",
+    "best_wr": 0.30644937186027954,
+    "timestamp": "2026-05-17T19:15:12.814510"
+  },
+  "v3_retrieval": {
+    "active_retrievers": [
+      "char_wb",
+      "char",
+      "word",
+      "byte"
+    ],
+    "disabled_retrievers": [],
+    "best_experiment": "E_lgb",
+    "best_wr": 0.31242476415340303,
+    "lgb_ok": true,
+    "lgb_wr": 0.31242476415340303,
+    "timestamp": "2026-05-17T21:10:47.248225"
+  },
+  "stage4_ce": {
+    "best_exp": "CE_LGB_all",
+    "best_wr": 0.3466643762195365,
+    "improved": true,
+    "experiments_tried": [
+      "CE_top5_all",
+      "CE_top5_no_Aka_Amh",
+      "CE_top10_all",
+      "CE_top10_no_Aka_Amh",
+      "CE_top20_all",
+      "CE_top20_no_Aka_Amh",
+      "CE_LGB_all",
+      "CE_LGB_no_Aka_Amh"
+    ],
+    "timestamp": "2026-05-17T22:18:13.298117"
+  },
+  "stage5": {
+    "best_exp": "5A_LGB_rl_heavy",
+    "best_wr": 0.3714754632202202,
+    "improved": true,
+    "dense_ok": true,
+    "dense_models": [
+      "minilm",
+      "e5s"
+    ],
+    "experiments": [
+      "5A_LGB_avg",
+      "5A_LGB_rl_heavy",
+      "5A_LGB_comp",
+      "5C_composer",
+      "5C_hyb_aka"
+    ],
+    "timestamp": "2026-05-17T23:41:30.137210"
+  }
+}
