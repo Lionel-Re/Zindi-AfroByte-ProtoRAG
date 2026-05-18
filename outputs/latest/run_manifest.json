@@ -97,5 +97,13 @@
       "Swa_Ken": "stage6"
     },
     "timestamp": "2026-05-18T01:09:04.136217"
+  },
+  "stage9": {
+    "bge_model": "BAAI/bge-reranker-v2-m3",
+    "best_exp": "9B_lugswa_rl_heavy",
+    "best_wr": 0.407787961707996,
+    "threshold": 0.38263,
+    "meets_threshold": true,
+    "candidate_public": true
   }
 }
